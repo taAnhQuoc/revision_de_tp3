@@ -5,7 +5,7 @@ name: Compilation du projet Maven
 on:
   push:
     tags:
-      - '1.0.0'
+      - '*.*.*'
     branches:
       - main
   workflow_dispatch:
@@ -27,10 +27,21 @@ jobs:
             run: chmod +x mvnw
           - name: Compilation du projet Maven
             run: ./mvnw package -DskipTests
+          - name: Publier le rapport JaCoCo
+            if: always()
+            uses: actions/upload-artifact@v5
+            with:
+              name: jacoco-reports
+              path: revision_de_tp3/target/site/jacoco
           - name: Créer un release GitHub
             uses: softprops/action-gh-release@v3
             with:
               files: target/*.jar
+          - name: Publier le jar executable
+            uses: actions/upload-artifact@v5
+            with: 
+              name: jar-executable
+              path: target/*.jar
 
 # implémenter les 17 tests qui échouent actuellement
 # modifier la dernière étape pour aussi exécuter les tests après la compilation
