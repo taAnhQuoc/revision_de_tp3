@@ -1,4 +1,4 @@
-## Atelier — Tests unitaires (révision) + premier pipeline CI
+## Atelier — Tests unitaires (révision) + premier pipeline CI v1.0.1
 
 Petit projet Java autonome (Maven, JDK 21, JUnit 6) — aucune dépendance à Spring ni à une
 base de données. Il sert uniquement à revoir les bases des tests unitaires avant de construire
